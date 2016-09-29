@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<script src="{% static 'js/jquery-1.12.3.min.js' %}"></script>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/mousescroll.js' %}"></script>
+<script src="{% static 'js/smoothscroll.js' %}"></script>
+<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'js/jquery.isotope.min.js' %}"></script>
+<script src="{% static 'js/jquery.inview.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $(".content-markdown").each(function(){
+      var content = $(this).text()
+      var markedContent = marked(content)
+      $(this).html(markedContent)
+    });
+
+    $(".post-detail-item img").each(function(){
+      $(this).addClass("img-responsive");
+    });
+
+    // preview-title
+
+    var contentInput = $("#id_content");
+
+    function setContent(value){
+      var markedContent = marked(value)
+      $("#preview-content").html(markedContent)
+      $("#preview-content img").each(function(){
+        $(this).addClass("img-responsive")
+      })
+    }
+
+    setContent(contentInput.val())
+
+    contentInput.keyup(function(){
+      var newContent = $(this).val()
+      setContent(newContent)
+    })
+
+    var titleInput = $("#id_title");
+
+
+    function setTitle(value){
+      $("#preview-title").text(value)
+    }
+
+    setTitle(titleInput.val())
+
+    titleInput.keyup(function(){
+      var newContent = $(this).val()
+      setTitle(newContent)
+    })
+
+    /*$(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+      $(this).parent().next(".comment-reply").fadeToggle();
+    })*/
+
+    $(".comment-reply-btn").click(function(event){
+      event.preventDefault();
+      $(this).next('.comment-reply').fadeToggle();
+      $(".comment-reply").fadeToggle("slow"); //(".comment-reply").fadeToggle("slow");
+    });
+
+    $('#add_reply_button').on('click', function () {
+    var $btn = $(this).button('loading')
+    // business logic...
+    $btn.button('reset')
+  })
+</script>

@@ -1,0 +1,26 @@
+<div class="alert alert-success text-center" role="alert">
+</div>
+
+  {% if messages%}
+    {% for message in messages %}
+    <div class="col-sm-8 col-sm-offset-2">
+    <div class="alert {% if 'error' in message.tags %}alert-danger{% else %}alert-success{% endif %} text-center" role="alert">
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        <div class='messages text-center'>
+          {% for message in messages %}
+            <li
+              {% if message.tags %} class="{{messge.tags}}" {% endif %}>{% if "html_safe" in message.tags %}
+                {{ message|safe }}
+              {% else %}
+                {{ message }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}

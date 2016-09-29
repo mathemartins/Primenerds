@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+    {% load staticfiles %}
+	{% load urlify %}
+	{% load crispy_forms_tags %}
+
+    {% block head_title %}
+        {{ instance.title }} | {{ block.super }}
+    {% endblock head_title %}
+
+{% block content %}
+    {{ object }}
+
+    <section>
+        <div class="container">
+        <div class="col-md-3">
+            <h3> Side Bar </h3>
+            <p> I am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and Posts </p>
+
+            <hr/>
+
+            <h3>Ads Section</h3>
+            <p>I am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and PostsI am working on comments and Posts</p>
+        </div>
+        <div class="container">
+        <!--<div class="col-md-2">
+            <h3> Side Bar </h3>
+        </div>-->
+        <div class='col-sm-6 col-sm-offset-1'>
+                        <br/>
+                        <h2><p>{{ comment.content }}</p></h2>
+                        <footer>via {{ comment.user }} | <cite title="Source Title">{{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} {% endif %}</cite></footer>
+                        <br/>
+
+                        <hr/>
+
+                        <div>
+                        {% for child_comment in comment.children %}
+
+                            <blockquote>
+                                <p>{{ child_comment.content }}</p>
+                                <footer>via {{ child_comment.user }} | <cite title="Source Title">{{ child_comment.timestamp|timesince }} ago </cite></footer>
+                            </blockquote>
+
+                        {% endfor %}
+
+                        {% if request.user.is_authenticated %}
+                        <form method="POST" action="."> {% csrf_token %}
+                            {{ form | crispy }}
+                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit"> Reply </button>
+                            </span>
+                        </form>
+                        {% else %}
+                            <div class="alert alert-danger" role="alert"> <p> You must be <a href="{{ '/login' }}" class="alert-link"> logged in </a> to reply comments on the thread </p> </div>
+                        {% endif %}
+                        </div>
+                    <hr/>
+        </div>
+        </div>
+        </div>
+        </section>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %}
+    {{ form.media }}
+{% endblock head_extra %}
+
+{% block content %}
+            <section id="features">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Create Posts</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Preview</h2>
+                        <hr/>
+                        <div class="content-preview">
+                            <h3 id="preview-title"></h3>
+                            <p id="preview-content"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2> Form </h2>
+                        <hr/>
+                         <form method='POST' action='' enctype='multipart/form-data'> {% csrf_token %}
+                              {{ form|crispy }}
+                              <br>
+                              <input type='submit' value='Create Post'>
+                              <div class="fb-login-button" data-max-rows="10" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
+                         </form>
+                    </div>
+                </div>
+            </section>
+
+{% endblock content %}

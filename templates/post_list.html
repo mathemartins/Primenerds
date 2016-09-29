@@ -1,0 +1,949 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block head_title %}  {% endblock %}
+            {% block content %}
+            {% if not user.is_authenticated %}
+            <!--<section id="main-slider">
+                <div class="owl-carousel">
+                    <div class="item">
+                        <img src="{% static 'images/slider/bg1.jpg' %}" class="item img-responsive img-center wow fadeInRight" alt="Responsive image">
+                        <div class="slider-inner">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="carousel-content">
+                                            <h2><span>Primenerds</span> is the best Online solutions firm</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                            <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>.item
+                     <div class="item">
+                     <img src="{% static 'images/slider/bg2.jpg' %}" class="item img-responsive img-center wow fadeInRight" alt="Responsive image">
+                        <div class="slider-inner">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="carousel-content">
+                                            <h2>Beautifully designed <span>free</span> one page template</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                            <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>-->
+
+            <section id="cta" class="wow fadeIn">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h2>Welcome to <strong style="color: blue;">Primenerds LTD</strong> </h2>
+                            <p style="color: #8A2BE2;">Primenerds LTD is a combination of an online multi-national IT tutorial company and physical tech solutions consultancy company for the non-technical users. Primenerds LTD has been following the industry's standard for IT tutorials solution and is ready to follow the solutions technique from rookies to intermediate users and expert professionals from the industries with vast experience knowledge. It has survived not only by one personnel but team of professional developers helping the growth of the company and industry at large, but also the leap into electronic and rapid development of technology, remaining essentially unchanged and not reducing but increasing massively to the industries greatest peak and apex…., Primenerds LTD is fighting to best in the industry.
+                            </p>
+                        </div>
+
+                        {% if not user.is_authenticated %}
+                            <div class="col-sm-3 text-right">
+                                <p>Already a member ?</p>
+                                <!-- Small modal -->
+                                <a type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".login_form-modal-sm">
+                                  login
+                                </a>
+                            </div>
+                            <div class="col-sm-3 text-right">
+                                <p>Not a member ?</p>
+                                <a class="btn btn-primary btn-lg" href="{% url 'register' %}">Sign Up </a>
+                            </div>
+                            <br/>
+                            <div class="col-sm-3 text-right">
+                                <a class="btn btn-danger btn-lg" href="#">Sign Up for Community</a>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </section><!--/#cta-->
+
+            <section id="features">
+                <div class="container">
+                    <div class="section-header">
+                        {% if user.is_authenticated %}
+                          <ol class="breadcrumb">
+                            <li class="active"><small> Hi </small> <strong> {{ user.username }} </strong> </li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Videos</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> View My Profile</a></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                          </ol>
+                        {% endif %}
+                        <br/>
+
+                        <div class="modal fade login_form-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">{{ title }}</a></li>
+                                  <!--<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>-->
+                                </ul>
+                              </div>
+                              <div class="modal-body">
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                  <div role="tabpanel" class="tab-pane active" id="home">
+                                    <form method='POST' action='' enctype='multipart/form-data'> {% csrf_token %}
+                                         {{ form|crispy }}
+                                         <br>
+                                         <input type='submit' class="btn btn-primary btn-lg" value=' {{ title }} '>
+                                         <br/>
+                                         <p>
+                                           <hr/>
+                                           <a href="#" class="btn btn-info"> <i class="fa fa-facebook-square fa-3x"></i> <strong>Login With FaceBook</strong> </a>
+                                           <a href="#" class="btn btn-danger"> <i class="fa fa-google-plus-square fa-3x"></i> <strong> Login with Google-plus </strong> </a>
+                                         </p>
+                                    </form>
+                                  </div>
+                                <!--  <div role="tabpanel" class="tab-pane" id="profile">
+                                    <form method='POST' action='' enctype='multipart/form-data'> {% csrf_token %}
+                                         {{ form_reg|crispy }}
+                                         <br>
+                                         <input type='submit' class="btn btn-primary btn-lg" value=' {{ title }} '>
+                                         <br/>
+                                         <p>
+                                           <hr/>
+                                           <a href="#" class="btn btn-info"> <i class="fa fa-facebook-square fa-3x"></i> <strong>Login With FaceBook</strong> </a>
+                                           <a href="#" class="btn btn-danger"> <i class="fa fa-google-plus-square fa-3x"></i> <strong> Login with Google-plus </strong> </a>
+                                         </p>
+                                    </form>
+                                  </div>-->
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h2 class="section-title text-center wow fadeInDown">Awesome Features</h2>
+                        <p class="text-center wow fadeInDown">Primenerds has provided awesome standard industry features on all of our platform to help and please our users engaging them with the following features for standard user experience</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 wow fadeInLeft">
+                            <img class="img-responsive" src="{% static 'images/main-feature.png' %}" alt="">
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="media service-box wow fadeInRight">
+                                <div class="pull-left">
+                                    <i class="fa fa-line-chart"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Large expanded user community</h4>
+                                    <p>Primenerds and its consolidated has a massive user community to contain large and massive audience, our community was designed to carry user profile, user audience,  article pages, live communication with the instructors , instructors pages, instructors profile and etc..</p>
+                                </div>
+                            </div>
+
+                            <div class="media service-box wow fadeInRight">
+                                <div class="pull-left">
+                                    <i class="fa fa-cubes"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Comment article on primenerds and primenerds hub-video membership portal</h4>
+                                    <p>Commenting system on both the primenerds home on all tutorial articles and our flexible Hub-membership portal, commenting system for all sections having the team nerds and instructors looking over your shoulders helping you out in every possible way they can.</p>
+                                </div>
+                            </div>
+
+                            <div class="media service-box wow fadeInRight">
+                                <div class="pull-left">
+                                    <i class="fa fa-pie-chart"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Primenerds video-membership hub</h4>
+                                    <p>Primenerds video-hub membership portal for access to unlimited video tutorials and programme files, including downloads and more commenting system and following of comment thread.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cta2">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Primenerds.LTD</h2>
+                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms" style="color: #8A2BE2;">Primenerds LTD has been following the industry's standard for IT tutorials solution and is ready to follow the solutions technique from rookies to intermediate users and expert professionals from the industries with vast experience knowledge.</p>
+                        {% if not user.is_authenticated %}
+                            <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms"><a class="btn btn-danger" href="#"> Enroll and become a premium user</a></p>
+                        {% endif %}
+                        <!--<img class="img-responsive wow fadeIn" src="{% static 'images/cta2/cta2-img.png' %}" alt="" data-wow-duration="300ms" data-wow-delay="300ms">-->
+                    </div>
+                </div>
+            </section>
+
+            <section id="services" >
+                <div class="container">
+
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Our Services</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p class="text-center wow fadeInDown"> <a class="btn btn-primary" href="{% url 'service' %}">Learn More</a></p>
+                    </div>
+
+                    <div class="row">
+                        <div class="features">
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-cogs"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Engineering</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-code"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Programming</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Cybersecurity</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-apple"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">iOS App</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-android"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Android App</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="500ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-wifi"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Networking</h4>
+                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+                        </div>
+                    </div><!--/.row-->
+                </div><!--/.container-->
+            </section><!--/#services-->
+
+            <!--<section id="portfolio">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Our Works</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p class="text-center"> you can also <em> <a href="#suggest">suggest a project</a></em> </p>
+                    </div>
+
+                    <div class="text-center">
+                        <ul class="portfolio-filter">
+                            <li><a class="active" href="#" data-filter="*">All Works</a></li>
+                            <li><a href="#" data-filter=".creative">Creative</a></li>
+                            <li><a href="#" data-filter=".corporate">Corporate</a></li>
+                            <li><a href="#" data-filter=".portfolio">Portfolio</a></li>
+                        </ul>/#portfolio-filter
+                    </div>
+
+                    <div class="portfolio-items">
+                        <div class="portfolio-item creative">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/01.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 1</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item corporate portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/02.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 2</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item creative">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/03.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 3</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/04.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 4</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item creative portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/05.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 5</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/06.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 5</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item creative portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/07.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 7</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/08.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 8</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>/.portfolio-item
+                    </div>
+                </div>/.container
+            </section>#portfolio-->
+
+            <!--<section id="about">
+                <div class="container">
+
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">About Us</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 wow fadeInLeft">
+                            <h3 class="column-title">Video Intro</h3>
+                            <! 16:9 aspect ratio >
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="854" height="480" src="https://www.youtube.com/embed/jdw5f4LUCs0" frameborder="0" allowfullscreen></iframe>
+                                <! <iframe src="//player.vimeo.com/video/58093852?title=0&amp;byline=0&amp;portrait=0&amp;color=e79b39" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 wow fadeInRight">
+                            <h3 class="column-title">Multi Capability</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+                            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="nostyle">
+                                        <li><i class="fa fa-check-square"></i> Ipsum is simply dummy</li>
+                                        <li><i class="fa fa-check-square"></i> When an unknown</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <ul class="nostyle">
+                                        <li><i class="fa fa-check-square"></i> The printing and typesetting</li>
+                                        <li><i class="fa fa-check-square"></i> Lorem Ipsum has been</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-primary" href="{% url 'about' %}">Learn More</a>
+
+                        </div>
+                    </div>
+                </div>
+            </section><!/#about-->
+
+            <!--<section id="work-process">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Our Process</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="0ms">
+                                <div class="icon-circle">
+                                    <span>1</span>
+                                    <i class="fa fa-user fa-2x"></i>
+                                </div>
+                                <h3>PLAN</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="100ms">
+                                <div class="icon-circle">
+                                    <span>2</span>
+                                    <i class="fa fa-graduation-cap fa-2x"></i>
+                                </div>
+                                <h3>TEACH</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="200ms">
+                                <div class="icon-circle">
+                                    <span>3</span>
+                                    <i class="fa fa-image fa-2x"></i>
+                                </div>
+                                <h3>PROJECT DESIGN</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="300ms">
+                                <div class="icon-circle">
+                                    <span>4</span>
+                                    <i class="fa fa-area-chart fa-2x"></i>
+                                </div>
+                                <h3>PROJECT DEVELOP</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
+                                <div class="icon-circle">
+                                    <span>5</span>
+                                    <i class="fa fa-cogs fa-2x"></i>
+                                </div>
+                                <h3>TESTING</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="500ms">
+                                <div class="icon-circle">
+                                    <span>6</span>
+                                    <i class="fa fa-space-shuttle fa-2x"></i>
+                                </div>
+                                <h3>LAUNCH</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!/#work-process-->
+
+            <section id="meet-team">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Meet Primenerds</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Our Skills</h3>
+                            <strong>CYBERSECUIRITY - 85% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                    <span class="sr-only">85% Successful</span>
+                                </div>
+                            </div>
+                            <strong>PROGRAMMING - 97% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" style="width: 97%">
+                                    <span class="sr-only">85% Successful</span>
+                                </div>
+                            </div>
+                            <strong>NETWORKING - 94% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 94%">
+                                    <span class="sr-only">94% Successful</span>
+                                </div>
+                            </div>
+                            <strong>HARDWARE ENGINEERING - 95% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                                    <span class="sr-only">95% Successful</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Our History</h3>
+                            <div role="tabpanel">
+                                <ul class="nav main-tab nav-justified" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab1" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true">2010</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab2" role="tab" data-toggle="tab" aria-controls="tab2" aria-expanded="false">2011</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab3" role="tab" data-toggle="tab" aria-controls="tab3" aria-expanded="false">2013</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab4" role="tab" data-toggle="tab" aria-controls="tab4" aria-expanded="false">2014</a>
+                                    </li>
+                                </ul>
+                                <div id="tab-content" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab1" aria-labelledby="tab1">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab2" aria-labelledby="tab2">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab3" aria-labelledby="tab3">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab4" aria-labelledby="tab3">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Faqs</h3>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Enim eiusmod high life accusamus
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Nihil anim keffiyeh helvetica
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThree">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Vegan excepteur butcher vice lomo
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section><!--/#meet-team-->
+
+            <!--<section id="animated-number">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Fun Facts</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="0ms">
+                                <div class="animated-number" data-digit="2305" data-duration="1000"><strong>13.9K</strong></div>
+                                <strong>CLIENTS SATISFIED</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="100ms">
+                                <div class="animated-number" data-digit="1231" data-duration="1000"><strong>19.8K</strong></div>
+                                <strong>CLIENT WORKED WITH</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="200ms">
+                                <div class="animated-number" data-digit="3025" data-duration="1000"><strong>11.4K</strong></div>
+                                <strong>PROJECT COMPLETED</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="300ms">
+                                <div class="animated-number" data-digit="1199" data-duration="1000"><strong>26.3K</strong></div>
+                                <strong>QUESTIONS ANSWERED</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!/#animated-number-->
+
+                <section id="pricing">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title text-center wow fadeInDown">Become a Premium User</h2>
+                            {% if not user.is_authenticated %}
+                                <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                <p class="text-center"> <a href="{% url 'register' %}" class="btn btn-danger"> Sign Up Now</a> </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="container text-center">
+                            <div class="col-sm-3 col-sm-offset-3">
+                                <div class="wow zoomIn" data-wow-duration="400ms" data-wow-delay="200ms">
+                                    <ul class="pricing featured">
+                                        <li class="plan-header">
+                                            <div class="price-duration">
+                                                <span class="price">
+                                                    $30
+                                                </span>
+                                                <span class="duration">
+                                                    per month
+                                                </span>
+                                            </div>
+
+                                            <div class="plan-name">
+                                                Premium Monthly Plan (PMP)
+                                            </div>
+                                        </li>
+                                        <li><strong>3</strong> DOMAIN</li>
+                                        <li><strong>300GB</strong> DISK SPACE</li>
+                                        <li><strong>UNLIMITED</strong> BANDWIDTH</li>
+                                        <li>SHARED SSL CERTIFICATE</li>
+                                        <li><strong>30</strong> EMAIL ADDRESS</li>
+                                        <li><strong>24/7</strong> SUPPORT</li>
+                                        {% if user.is_authenticated %}
+                                            <li class="plan-purchase"><a class="btn btn-default" href="#">ENROLL NOW</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="wow zoomIn" data-wow-duration="400ms" data-wow-delay="400ms">
+                                    <ul class="pricing">
+                                        <li class="plan-header">
+                                            <div class="price-duration">
+                                                <span class="price">
+                                                    $25
+                                                </span>
+                                                <span class="duration">
+                                                    per month
+                                                </span>
+                                            </div>
+
+                                            <div class="plan-name">
+                                                Premium Annual Plan (PAP)
+                                            </div>
+                                        </li>
+                                        <li><strong>5</strong> DOMAIN</li>
+                                        <li><strong>500GB</strong> DISK SPACE</li>
+                                        <li><strong>UNLIMITED</strong> BANDWIDTH</li>
+                                        <li>SHARED SSL CERTIFICATE</li>
+                                        <li><strong>50</strong> EMAIL ADDRESS</li>
+                                        <li><strong>24/7</strong> SUPPORT</li>
+                                        {% if user.is_authenticated %}
+                                            <li class="plan-purchase"><a class="btn btn-primary" href="#">ENROLL NOW</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section><!--/#pricing-->
+
+            <!--<section id="testimonial">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+
+                            <div id="carousel-testimonial" class="carousel slide text-center" data-ride="carousel">
+                                <!Wrapper for slides >
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <p><img class="img-circle img-thumbnail" src="{% static 'images/testimonial/01.jpg' %}" alt=""></p>
+                                        <h4>Louise S. Morgan</h4>
+                                        <small>Treatment, storage, and disposal (TSD) worker</small>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                    </div>
+                                    <div class="item">
+                                        <p><img class="img-circle img-thumbnail" src="{% static 'images/testimonial/01.jpg' %}" alt=""></p>
+                                        <h4>Louise S. Morgan</h4>
+                                        <small>Treatment, storage, and disposal (TSD) worker</small>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                    </div>
+                                </div>
+
+                                <! Controls >
+                                <div class="btns">
+                                    <a class="btn btn-primary btn-sm" href="#carousel-testimonial" role="button" data-slide="prev">
+                                        <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="btn btn-primary btn-sm" href="#carousel-testimonial" role="button" data-slide="next">
+                                        <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!/#testimonial-->
+
+            <section id="blog">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Tutorials</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ object_list }} #this list objects horizontally -->
+                                {% for obj in object_list %}
+                            <div class="blog-post blog-large wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="0ms">
+                                <article>
+                                    <header class="entry-header">
+                                        <div class="entry-thumbnail">
+                                            {% if obj.image %}
+                                            <img class="img-responsive" src="{{ obj.image.url }}" alt="" />
+                                            {% endif %}
+                                            <span class="post-format post-format-video"><i class="fa fa-film"></i></span>
+                                        </div>
+                                        {% if obj.draft %}<h4>Staff Only: </h4> <button type="button" class="btn btn-danger">Draft</button> {% endif %}
+                                        <p>{% if obj.publish > today %} <h4> Future posts: </h4> <button type="button" class="btn btn-info">this post will be published in future </button>{% endif %}</p>
+                                        <div class="entry-date"> <small> <em> published since - </em> </small>{{ obj.timestamp}}</div>
+                                        <h2 class="entry-title"> <a href='{{ obj.get_absolute_url }}'> {{ obj.title }} </a><br/></h2>
+                                    </header>
+
+                                    <div class="entry-content post-detail-item">
+                                        <P class="">{{ obj.get_markdown | truncatechars_html:200 }}</P>
+                                        <a href=' {{ obj.get_absolute_url }} ' class="btn btn-primary">Read More</a>
+                                    </div>
+
+
+
+                                    <footer class="entry-meta">
+                                        <span class="entry-category"><i class="fa fa-folder-o"></i> <a href="#">Tutorial</a></span>
+                                        <span class="entry-author"><i class="fa fa-pencil"></i> {% if obj.user.get_full_name %} <a href="#">{{ obj.user.get_full_name }}</a> {% endif %}</span>
+                                        <!--<span class="entry-comments"><i class="fa fa-comments-o"></i> <a href="#">15</a></span>
+                                        <span class="entry-views"><i class="fa fa-eye"></i> <a href="#">47</a></span>-->
+                                    </footer>
+                                </article>
+
+                            </div>
+                            {% endfor %}
+                            </div>
+                            <span> <br> </span>
+                        <!--<div class="pagination">
+                            <span class="step-links">
+                                {% if object_list.has_previous %}
+                                    <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}"> <i class="fa fa-arrow-circle-o-left"></i> previous </a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                                </span>
+
+                                {% if object_list.has_next %}
+                                    <a href="?{{ page_request_var }}={{ object_list.next_page_number }}"> next <i class="fa fa-arrow-circle-o-right"></i></a>
+                                {% endif %}
+                            </span>
+                        </div>-->
+
+                        </div><!--/.col-sm-6--><br>
+                            <!--<div class="blog-post blog-media wow fadeInRight" data-wow-duration="300ms" data-wow-delay="200ms">
+                                <article class="media clearfix">
+                                    <div class="entry-thumbnail pull-left">
+                                        <img class="img-responsive" src="{% static 'images/blog/03.jpg' %}" alt="">
+                                        <span class="post-format post-format-audio"><i class="fa fa-music"></i></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <header class="entry-header">
+                                            <div class="entry-date">03 November 2014</div>
+                                            <h2 class="entry-title"><a href="#">Play list of old bangle  music and gajal</a></h2>
+                                        </header>
+
+                                        <div class="entry-content">
+                                            <P>With a blow from the top-maul Ahab knocked off the steel head of the lance, and then handing to the steel</P>
+                                            <a class="btn btn-primary" href="#">Read More</a>
+                                        </div>
+
+                                        <footer class="entry-meta">
+                                            <span class="entry-author"><i class="fa fa-pencil"></i> <a href="#">Ruth</a></span>
+                                            <span class="entry-category"><i class="fa fa-folder-o"></i> <a href="#">Tutorial</a></span>
+                                            <span class="entry-comments"><i class="fa fa-comments-o"></i> <a href="#">15</a></span>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>-->
+                        {% if not user.is_authenticated %}
+                            <div class="blog-post blog-media wow fadeInRight" data-wow-duration="300ms" data-wow-delay="200ms">
+                                <div class="media-body">
+                                    <header class="entry-header">
+                                        <h2 class="entry-title">Login to your primenerds account, to be able to comment on tutorials articles, posts and follow thread forum on community</h2>
+                                    </header>
+
+                                    <div class="entry-content">
+                                        <P style="color: blue"> <em> Already a member ?,</em> </P>
+                                        <a class="btn btn-danger" href="{% url 'login' %}">Login</a>
+                                        <a class="btn btn-primary fadeInRight" href="{% url 'register' %}">Sign Up for free account</a>
+                                        <a class="btn btn-danger fadeInRight" href="#">Sign Up in the community</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="text-center"><h2><a href="/blogs" class="btn btn-info"> Read All Tutorial Articles </a></h2></div>
+                </div>
+            </section>
+
+            <!--<section id="get-in-touch">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Get in Touch</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                </div>
+            </section><!/#get-in-touch>
+
+
+            <section id="contact">
+                <div id="google-map" style="height:650px" data-latitude="52.365629" data-longitude="4.871331"></div>
+                <div class="container-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-8">
+                                <div class="contact-form">
+                                    <h3>Contact Info</h3>
+
+                                    <address>
+                                      <strong>Primenerds, LTD.</strong><br>
+                                      795 Folsom Ave, Suite 600<br>
+                                      San Francisco, CA 94107<br>
+                                      <abbr title="Phone">P: <i class='fa fa-phone'></i> </abbr> (+234) 70-8032-5138
+                                    </address>
+
+                                    <form id="main-contact-form" name="contact-form" method="post" action="#">
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" class="form-control" rows="8" placeholder="Message" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!/#bottom-->
+            {% else %}
+            <section>
+              <div class="container">
+
+                <!-- jumbotron starts here -->
+                <div class="jumbotron">
+                  <div class="container">
+                    <h2>Hi, {{ user.username }}</h2>
+                    <marquee><p class="lead text-info"> welcome to primenerds </p></marquee>
+                  </div>
+                </div>
+                <!-- jumbotron ends here -->
+
+              </div>
+            </section>
+            {% endif %}
+            {% endblock content %}

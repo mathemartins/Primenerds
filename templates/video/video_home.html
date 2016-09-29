@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %} videos | {% endblock %}
+{% block content %}
+
+  Hello {{ user }} <br/>
+
+  <p> {{ videos }} </p> <br/>
+
+  <p>
+    {% for video in videos %} <!-- video = videos which is equal to Video.objects.all() -->
+      <p> {{ forloop.counter }}. {{ video.embed_code|safe }} <br/>
+        <a href="{{ video.get_absolute_url }}"> {{ video.title }} </a>
+      </p>
+    {% endfor %}
+  </p>
+
+  <h2> Embeds </h2>
+
+  <h2> Mark Safe </h2>
+  {{ e_code }} <br/>
+
+  {% for embed in embeds %} <!-- embed = embeds which is equal to all embed codes in our database -->
+    <p>
+      {{ embeds|safe }}
+    </p>
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %} videos | {% endblock %}
+{% block content %}
+
+  Hello {{ user }} <br/>
+
+  <p> This is category_detail, you are in the right track </p>
+
+  {{ queryset }}
+
+{% endblock %}

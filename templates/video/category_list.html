@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %} videos | {% endblock %}
+{% block content %}
+
+  Hello {{ user }} <br/>
+
+  {% for item in queryset %}
+    <a href="{{ item.get_absolute_url }}"> {{item}} </a> <br/>
+    <a href="{{ item.get_absolute_url }}"> <img src='{{item.get_image_url}}' class='img-responsive'/> </a> <br/>
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<header id="header">
+    <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ '/' }}"><img src="{% static 'images/logo.jpg' %}" alt="primenerd_logo"></a>
+            </div>
+            
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="scroll active"><a href="{{ '/' }}">Home</a></li>
+                    <li class="scroll"><a href="{{'/blog'}}">Blog</a></li>
+                    <li class="scroll"><a href="#" target="blank">Community</a></li>
+                    <li class="scroll"><a href="{% url 'projects' %}" target="blank">Videos</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="scroll dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i> {{ user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Billing</a></li>
+                                {% if user.is_staff or user.is_superuser %}<li><a href="{{ '/admin/officialnerds/' }}">Admin</a></li> {% endif %}
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle notification-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-inbox"></i> <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu" id='notification_dropdown'>
+
+                          </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->

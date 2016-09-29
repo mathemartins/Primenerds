@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+<style>
+  {% block style %}
+    .video_comment_reply {
+      display: none;
+    }
+  {% endblock %}
+</style>
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block head_title %} videos | {% endblock %}
+{% block content %}
+  <section>
+    <div class="container">
+      
+      <div class='col-sm-10'>
+        <div class="embed-responsive embed-responsive-16by9">
+          {{ obj.embed_code|safe }}
+        </div>
+        {% if obj.tags.all %}
+          <div>
+            <ul>
+              {% for tag in obj.tags.all %}
+              <li>
+                {{ tag }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="container">
+        <div class="col-sm-2">
+          <h3> video chapters </h3>
+          This is video details category This is video details category
+          This is video details category This is video details category
+          This is video details category This is video details category
+        </div>
+      </div>
+
+      <p> <h4> Share on <i class="fa fa-share-alt"></i> </h4>
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ obj.get_share_link }}" class="btn btn-primary">
+            <i class="fa fa-facebook-square fa-3x"></i>
+          </a>
+          <a target="_blank" href="https://twitter.com/home?status={{ obj.get_share_message|safe }}" class="btn btn-primary">
+            <i class="fa fa-twitter-square fa-3x"></i>
+          </a>
+          <a target="_blank" href='https://plus.google.com/share?url={{ obj.get_share_link }}' class="btn btn-danger">
+            <i class="fa fa-google-plus-square fa-3x"></i>
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ obj.get_share_message|safe }}" class="btn btn-primary">
+            <i class="fa fa-linkedin-square fa-3x"></i>
+          </a>
+      </p>
+
+      {% if obj.get_previous_url %}
+        <a href='{{ obj.get_previous_url }}'><i class="fa fa-3x fa-arrow-circle-o-left"></i></a>
+      {% endif %}
+      {% if obj.get_next_url %}
+        <a href='{{ obj.get_next_url }}'><i class="fa fa-3x fa-arrow-circle-o-right"></i></a>
+      {% endif %}
+
+      <hr>
+      </div>
+  </section>
+  <section>
+    <div class="container">
+      <h2>Comments/Questions</h2>
+      <div class="col-sm-8">
+
+        <form method="POST" action="{% url 'question_create' %}" enctype='multipart/form-data'> {% csrf_token %}
+          <input type="hidden" name="video_id" value="{{obj.id}}"/>
+          <input type="hidden" name="instance_location_destination" value="{{request.get_full_path}}" />
+          {{ question_form | crispy }}
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="submit"> Add Comment </button>
+          </span>
+          <br/>
+          <br/>
+
+        </form>
+
+      </div>
+
+      <br/>
+
+      <div class="col-sm-8">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">All Comments
+            <span class="badge">
+              {% for question in questions %}
+                {{ question.count }}
+              {% endfor %}
+            </span>
+            </h3>
+          </div>
+          <div class="panel-body">
+          {% for question in questions %}
+          <div class="media">
+            <div class="media-left">
+              <a href="#">
+                <i class="fa fa-comments-o fa-2x"></i>
+              </a>
+            </div>
+            <div class="media-body">
+              <h5 class="media-heading">{{ question.get_question }}</h5>
+              <small>via - <cite title="{{question.user}}"> <i class="fa fa-user"></i> {{ question.user }}</cite> | <i class="fa fa-clock-o"></i> {{ question.timestamp|timesince }} ago </small>
+              <br/>
+              {% if not question.is_child %}
+                <ul class="list-group">
+                  <br/>
+                  {% for child in question.get_children %}
+                    <div class="col-sm-12">
+                      <li class="list-group-item list-group-item-info"> {{ child.get_question }} </li>
+                      <small>via <cite title="{{child.user}}"> <strong> <i class="fa fa-user"></i> {{ child.user }} </strong></cite> | <i class="fa fa-clock-o"></i> {{ child.timestamp|timesince }} ago | <a href="#"><i class="fa fa-thumbs-o-up"></i> Helpful </a> |
+                      <a href="#"><i class="fa fa-thumbs-o-down"></i> Not Helpful </a></small>
+                    </div>
+                  {% endfor %}
+                </ul>
+                <div class="btn-group" role="group" aria-label="...">
+                  <a class="btn btn-primary" role="button" id="add_reply_button" data-loading-text="Loading..." data-toggle="collapse" href="#{{question.id}}" aria-expanded="false" aria-controls="collapseExample" autocomplete="off">
+                    Add Reply
+                  </a>
+                  <a href="{{ question.get_absolute_url }}" class="btn btn-primary">View Thread</a>
+
+                </div>
+                <div class="collapse" id="{{question.id}}">
+                  <div>
+                    <br/>
+                    <form method="POST" action="{% url 'question_create' %}"> {% csrf_token %}
+                      <input type="hidden" name="video_id" value="{% url 'question_create' %}"/>
+                      <input type="hidden" name="instance_location_destination" value="{{question.get_instance_location}}" />
+                        <input type="hidden" name="parent_id" value="{{ question.id }}" />
+                        {{ question_form | crispy }}
+                        <span class="input-group-btn">
+                          <button class="btn btn-info" type="submit"> Reply </button>
+                        </span>
+                        <br/>
+                        <br/>
+                      </form>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+            <hr/>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      </div>
+
+  </section>
+
+  <!--{% for comment in comments %}
+    {{ comment.content }} <br/>
+  {% endfor %} this is a different method of commenting system-->
+      <!-- script for responsive video but stays underneath for fast loading -->
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+    {% load staticfiles %}
+	{% load urlify %}
+	{% load crispy_forms_tags %}
+
+    {% block head_title %}
+        {{ instance.title }} | {{ block.super }}
+    {% endblock head_title %}
+    
+{% block content %}
+		<section>
+    	<div class="container">
+	      <div class="col-sm-8">
+	      <a href="{{ question.get_instance_location }}"> <i class="fa fa-arrow-circle-left"></i> Go Back </a>
+	      <hr/>
+	        <div class="panel panel-danger">
+	          <div class="panel-heading">
+	            <h3 class="panel-title">Comments Thread
+	            </h3>
+	          </div>
+	          <div class="panel-body">
+	          <div class="media">
+	            <div class="media-left">
+	              <a href="#">
+	                <i class="fa fa-comments-o fa-2x"></i>
+	              </a>
+	            </div>
+	            <div class="media-body">
+	              <h4 class="media-heading">{{ question.get_question }}</h4>
+	              <small>via - <cite title="{{question.user}}"> <i class="fa fa-user"></i> {{ question.user }}</cite> | <i class="fa fa-clock-o"></i> {{ question.timestamp|timesince }} ago</small>
+	              <br/>
+                {% if not question.is_child %}
+                  <ul class="list-group">
+                    <br/>
+                    {% for child in question.get_children %}
+                      <div class="col-sm-12">
+                        <li class="list-group-item list-group-item-info"> {{ child.get_question }} </li>
+                        <small>via <cite title="{{child.user}}"> <strong> <i class="fa fa-user"></i> {{ child.user }} </strong></cite> | <i class="fa fa-clock-o"></i> {{ child.timestamp|timesince }} ago | <a href="#"><i class="fa fa-thumbs-o-up"></i> Helpful </a> |
+                        <a href="#"><i class="fa fa-thumbs-o-down"></i> Not Helpful </a></small>
+                        <br/>
+                      </div>
+                    {% endfor %}
+                  </ul>
+                  <div id="{{question.id}}">
+                    <div>
+                      <br/>
+                      <form method="POST" action="{% url 'question_create' %}"> {% csrf_token %}
+                          <br/>
+                          <input type="hidden" name="parent_id" value="{{ question.id }}" />
+                          <br/>
+                          {{ form | crispy }}
+                          <span class="input-group-btn">
+                            <button class="btn btn-info" type="submit"> Reply </button>
+                          </span>
+                          <br/>
+                          <br/>
+                        </form>
+                    </div>
+                  </div>
+                {% endif %}
+	            </div>
+	          </div>
+	            <hr/>
+	          </div>
+	        </div>
+      </div>
+
+      <div class="col-sm-4">
+      <a href="#"> Some Link</a>
+      <hr/>
+
+      	<div class="panel panel-info">
+	        <div class="panel-heading">
+	        	<h3 class="panel-title">Side Bar</h3>
+	        </div>
+	        <div class="panel-body">
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        	<p> Students who viewed this also viewed this !! </p>
+	        </div>
+	    </div>
+      </div>
+      </div>
+      </section>
+
+{% endblock %}

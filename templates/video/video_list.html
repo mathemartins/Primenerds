@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %} videos | {% endblock %}
+{% block content %}
+
+  Hello {{ user }} <br/>
+
+  <p> This is video list, you are in the right track </p>
+
+    {% for item in queryset %}
+
+      {{ item.order }} -
+      {% if request.user.is_authenticated %}
+       <a href="{{ item.get_absolute_url }}"> {{ item }} </a> <br/>
+      {% else %}
+      {{ item }} <br/>
+      {% endif %}
+
+  {% endfor %}
+
+{% endblock %}

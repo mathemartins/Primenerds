@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+    {% load staticfiles %}
+    {% load crispy_forms_tags %}
+    {% block head_title %} notifications | {% endblock %}
+{% block content %}
+
+<section>
+  <div class="container">
+    <div class="col-sm-8">
+      <table class="table table-hover">
+        {% for note in notifications %}
+          <tr>
+            <td>
+              <p class="{% if note.read %}text-success{% else %}text-danger{% endif %}"> <strong> {{ note|safe }} </strong> </p>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+  </div>
+  <div class="col-sm-3">
+    <table class="table table-hover">
+      {% for note in notifications %}
+      <tr>
+        <td>
+          <p>
+          {% if note.read %}
+            <i class="fa fa-check-square"></i> <strong> read </strong>
+          {% else %}
+            <i class="fa fa-exclamation-circle"></i> <strong> unread </strong>
+          {% endif %}
+        </p>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+</section
+{% endblock %}

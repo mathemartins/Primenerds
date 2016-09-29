@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+	{% block content %}
+            <section id="main-slider">
+                <div class="owl-carousel">
+                    <div class="item">
+                        <img src="{% static 'images/slider/bg1.jpg' %}" class="item img-responsive img-center wow fadeInRight" alt="Responsive image">
+                        <div class="slider-inner">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="carousel-content">
+                                            <h2><span>Primenerds</span> is the best Online solutions firm</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                            <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>.item
+                     <div class="item">
+                     <img src="{% static 'images/slider/bg2.jpg' %}" class="item img-responsive img-center wow fadeInRight" alt="Responsive image">
+                        <div class="slider-inner">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="carousel-content">
+                                            <h2>Beautifully designed <span>free</span> one page template</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                            <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="about">
+                <div class="container">
+
+                    <div class="section-header">
+                        {% if user.is_authenticated %}
+                            <h3 class="text-center wow fadeInDown"> <strong style="color: blue;"> {{ user.username }} </strong> <i class="fa fa-arrow-right"></i> <a href="" class="btn btn-warning">Community</a> <i class="fa fa-arrow-right"></i> <a href="" class="btn btn-warning">Video-Hub</a> <i class="fa fa-arrow-right"></i> <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a> </h3>
+                        {% endif %}
+                        <br/>
+                        <h2 class="section-title text-center wow fadeInDown">About Us</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 wow fadeInLeft">
+                            <h3 class="column-title">Video Intro</h3>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="854" height="480" src="https://www.youtube.com/embed/jdw5f4LUCs0" frameborder="0" allowfullscreen></iframe>
+                                <!-- <iframe src="//player.vimeo.com/video/58093852?title=0&amp;byline=0&amp;portrait=0&amp;color=e79b39" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 wow fadeInRight">
+                            <h3 class="column-title">Multi Capability</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+                            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="nostyle">
+                                        <li><i class="fa fa-check-square"></i> Ipsum is simply dummy</li>
+                                        <li><i class="fa fa-check-square"></i> When an unknown</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <ul class="nostyle">
+                                        <li><i class="fa fa-check-square"></i> The printing and typesetting</li>
+                                        <li><i class="fa fa-check-square"></i> Lorem Ipsum has been</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!--/#about-->
+            <section id="meet-team">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Meet Primenerds</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Our Skills</h3>
+                            <strong>CYBERSECUIRITY - 85% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                    <span class="sr-only">85% Successful</span>
+                                </div>
+                            </div>
+                            <strong>PROGRAMMING - 97% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" style="width: 97%">
+                                    <span class="sr-only">85% Successful</span>
+                                </div>
+                            </div>
+                            <strong>NETWORKING - 94% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 94%">
+                                    <span class="sr-only">94% Successful</span>
+                                </div>
+                            </div>
+                            <strong>HARDWARE ENGINEERING - 95% Successful</strong>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                                    <span class="sr-only">95% Successful</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Our History</h3>
+                            <div role="tabpanel">
+                                <ul class="nav main-tab nav-justified" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab1" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true">2010</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab2" role="tab" data-toggle="tab" aria-controls="tab2" aria-expanded="false">2011</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab3" role="tab" data-toggle="tab" aria-controls="tab3" aria-expanded="false">2013</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab4" role="tab" data-toggle="tab" aria-controls="tab4" aria-expanded="false">2014</a>
+                                    </li>
+                                </ul>
+                                <div id="tab-content" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab1" aria-labelledby="tab1">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab2" aria-labelledby="tab2">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab3" aria-labelledby="tab3">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab4" aria-labelledby="tab3">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters readable English.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h3 class="column-title">Faqs</h3>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Enim eiusmod high life accusamus
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Nihil anim keffiyeh helvetica
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThree">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Vegan excepteur butcher vice lomo
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section><!--/#meet-team-->
+                        <section id="work-process">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Our Process</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="0ms">
+                                <div class="icon-circle">
+                                    <span>1</span>
+                                    <i class="fa fa-coffee fa-2x"></i>
+                                </div>
+                                <h3>MEET</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="100ms">
+                                <div class="icon-circle">
+                                    <span>2</span>
+                                    <i class="fa fa-user fa-2x"></i>
+                                </div>
+                                <h3>PLAN</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="200ms">
+                                <div class="icon-circle">
+                                    <span>3</span>
+                                    <i class="fa fa-image fa-2x"></i>
+                                </div>
+                                <h3>DESIGN</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="300ms">
+                                <div class="icon-circle">
+                                    <span>4</span>
+                                    <i class="fa fa-area-chart fa-2x"></i>
+                                </div>
+                                <h3>DEVELOP</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
+                                <div class="icon-circle">
+                                    <span>5</span>
+                                    <i class="fa fa-cogs fa-2x"></i>
+                                </div>
+                                <h3>TESTING</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-4 col-xs-6">
+                            <div class="wow fadeInUp" data-wow-duration="400ms" data-wow-delay="500ms">
+                                <div class="icon-circle">
+                                    <span>6</span>
+                                    <i class="fa fa-space-shuttle fa-2x"></i>
+                                </div>
+                                <h3>LAUNCH</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!--/#work-process-->
+            <section id="portfolio">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Our Works</h2>
+                        <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p class="text-center"> you can also <em> <a href="#suggest">suggest a project</a></em> </p>
+                    </div>
+
+                    <div class="text-center">
+                        <ul class="portfolio-filter">
+                            <li><a class="active" href="#" data-filter="*">All Works</a></li>
+                            <li><a href="#" data-filter=".creative">Creative</a></li>
+                            <li><a href="#" data-filter=".corporate">Corporate</a></li>
+                            <li><a href="#" data-filter=".portfolio">Portfolio</a></li>
+                        </ul><!--/#portfolio-filter-->
+                    </div>
+
+                    <div class="portfolio-items">
+                        <div class="portfolio-item creative">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/01.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 1</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item corporate portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/02.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 2</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item creative">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/03.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 3</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/04.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 4</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item creative portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/05.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 5</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/06.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 5</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item creative portfolio">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/07.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 7</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+
+                        <div class="portfolio-item corporate">
+                            <div class="portfolio-item-inner">
+                                <img class="img-responsive" src="{% static 'images/portfolio/08.jpg' %}" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Item 8</h3>
+                                    Lorem Ipsum Dolor Sit
+                                    <a class="preview" href="{% static 'images/portfolio/full.jpg' %}" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+                    </div>
+                </div><!--/.container-->
+            </section><!--/#portfolio-->
+	{% endblock content %}

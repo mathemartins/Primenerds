@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+            <section id="features">
+                <div class="container">
+                    <div class="col-sm-6">
+                        <h2> {{ title }} </h2>
+                        <hr/>
+                         <form method='POST' action='' enctype='multipart/form-data'> {% csrf_token %}
+                              {{ form|crispy }}
+                              <br>
+                              <input type='submit' class="btn btn-primary btn-lg" value=' {{ title }} '>
+                              <br/>
+                              <p>
+                                <hr/>
+                                <a href="#" class="btn btn-info"> <i class="fa fa-facebook-square fa-3x"></i> <strong>Login With FaceBook</strong> </a>
+                                <a href="#" class="btn btn-danger"> <i class="fa fa-google-plus-square fa-3x"></i> <strong> Login with Google-plus </strong> </a>
+                              </p>
+                         </form>
+                    </div>
+
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <h2> Side bar shit !! </h2>
+                        <hr/>
+                        <p> Sign Up with </p>
+                        comes here, Community API, Video Portal Stuffs, facebook page stuffs, twitter tweets, Youtube likes and views comes here, Community API, Video Portal Stuffs, facebook page stuffs, twitter tweets, Youtube likes and views comes
+                    </div>
+                </div>
+            </section>
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>{% block head_title%} {% endblock head_title%}the official nerds</title>
+		<!-- core CSS -->
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
+		<link href="{% static 'css/owl.transitions.css' %}" rel="stylesheet">
+		<link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+		<link href="{% static 'css/main.css' %}" rel="stylesheet">
+		<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="{% static 'js/html5shiv.js' %}"></script>
+		<script src="{% static 'js/respond.min.js' %}"></script>
+		<![endif]-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+		<link rel="shortcut icon" href="{% static 'images/ico/1.1.ico' %}" >
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}" >
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}" >
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}" >
+		<link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}" >
+        <style>
+            {% block style %}
+						
+            {% endblock style %}
+        </style>
+        {% block head_extra %}{% endblock head_extra %}
+    </head>
+    <body id="home" class="homepage">
+
+		<!-- Inserting the navbar inthe base.html -->
+		{% include "navbar.html" %}
+			<div id='notificationsLoader'>
+				<!-- notifications load here -->
+
+			</div>
+        {% include "messages_display.html" %}
+            {% block content %}
+
+
+            {% endblock content %}
+				{% include "javascript.html" %}
+
+		<script>
+			$(document).ready(function(){
+				//alert('testing jquery');
+
+				{% block jquery %}
+
+				{% endblock %}
+			});
+		</script>
+		<script>
+    $(document).ready(function(){
+      $(".notification-toggle").click(function(e){
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "{% url 'get_notifications_ajax' %}",
+          data: {
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+          },
+          success: function(data){
+            $("#notification_dropdown").html(' <li role="presentation" class="dropdown-header"><strong>Unread Notifications</strong></li>');
+            var count = data.count
+            console.log(count)
+            if (count == 0) {
+              var url = '{% url "notifications_all" %}'
+              $("#notification_dropdown").append("<li><a href='" + url+ "'>see all notifications</a></li>")
+            } else {
+              $(data.notifications).each(function(){
+                var link = this;
+                $("#notification_dropdown").append("<li>" + link + "</li>")
+
+              })
+            }
+            console.log(data.notifications);
+
+          },
+          error: function(rs, e) {
+            console.log(rs);
+            console.log(e);
+          }
+
+        })
+
+      })
+
+    })
+    </script>
+		{% include "footer.html" %}
+    </body>
+</html>

@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+    {% load staticfiles %}
+	{% load urlify %}
+	{% load crispy_forms_tags %}
+
+    {% block head_title %}
+        {{ instance.title }} | {{ block.super }}
+    {% endblock head_title %}
+
+    {% block head_extra %}
+        {{ form.media }}
+    {% endblock head_extra %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+        <div class="col-sm-4">
+          <br/>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Side Bar </h3>
+            </div>
+            <div class="panel-body">
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Ads Section</h3>
+            </div>
+            <div class="panel-body">
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+              I am working on comments and Posts
+            </div>
+          </div>
+
+        </div>
+        <div class="container">
+        <!--<div class="col-md-2">
+            <h3> Side Bar </h3>
+        </div>-->
+        <div class='col-sm-7 col-sm-offset-1'>
+          <h1 class="text-uppercase"> {{ title }} </h1>
+          <hr>
+        	{% if instance.image %}
+        	<img src="{{ instance.image.url }}" class="img-responsive">
+	    	  {% endif %}
+            <hr>
+            <div class="well well-sm">
+              <p></p>
+              <p class="text-center text-info">
+                <strong> <i class="fa fa-clock-o"></i> Elapse Time </strong>
+                : {% if instance.read_time|time:"i" <= "01" %}
+                 less than 1 minute
+                 {% else %}
+                 {{ instance.read_time|time:"i" }} minutes
+                 {% endif %} <strong>|</strong>
+
+                {% if instance.user.get_full_name %}
+                	<strong> Author: </strong> {{ instance.user.get_full_name }}
+
+                {% endif %} <strong>|</strong>
+
+                  <strong>
+                    <!--<em></em>--> Published Since: </strong> <i class="fa fa-calendar" aria-hidden="true"></i> {{ instance.timestamp}}
+
+              </p>
+            </div>
+
+            {% if instance.draft %} <button type="button" class="btn btn-danger">Draft</button> {% endif %}
+
+            <!-- {{ object_list }} #this list objects horizontally <br>-->
+
+            <p class="text-info"><strong> Share on <i class="fa fa-share-alt"></i> : </strong></p>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+				          <i class="fa fa-facebook-square fa-3x"></i>
+			      </a>
+			      <a href="https://twitter.com/home?status={{ instance.content| truncatechars:80 |urlify }}%20{{ request.build_absolute_uri }}/">
+				          <i class="fa fa-twitter-square fa-3x"></i>
+			      </a>
+			      <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' class="text-danger">
+				          <i class="fa fa-google-plus-square fa-3x"></i>
+			      </a>
+			      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+				          <i class="fa fa-linkedin-square fa-3x"></i>
+			      </a>
+
+      			<div class="post-detail-item">
+              <hr>
+      				{{ instance.get_markdown }}
+      			</div>
+
+            <hr/>
+            <div class="col-sm-6">
+            	<p class="lead"> <strong> Comments </strong> </p>
+              <hr/>
+            </div>
+            <div class="col-sm-8">
+              {% if request.user.is_authenticated %}
+                <form method="POST" action="." enctype='multipart/form-data'> {% csrf_token %}
+                  {{ comment_form | crispy }}
+                  <span class="input-group-btn">
+                      <button class="btn btn-info" type="submit"> Comment </button>
+                  </span>
+                </form>
+              {% else %}
+                <div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span> You must be <a href="{{ '/login' }}" class="alert-link"> logged in </a>
+                  to comment on tutorial article
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-sm-12">
+              <h4>Comment Preview</h4>
+              <hr/>
+              <div class="content-preview">
+                  <h3 id="preview-title"></h3>
+                  <p id="preview-content"></p>
+              </div>
+
+              <br/>
+              <hr/>
+              <br/>
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">All Comments
+                  <span class="badge">
+                  {% for comment in comments %}
+                      {{ comment.count }}
+                  {% endfor %}
+                  </span>
+                  </h3>
+                </div>
+                <div class="panel-body">
+
+                {% for comment in comments %}
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"> {{ comment.user }} </h4>
+                      {{ comment.content }}
+                      <footer> <i class="fa fa-arrow-right"> </i> <i class="fa fa-clock-o"></i> <cite title=" {{ comment.timestamp|timesince }} ">{{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} |{% endif %} <a class="comment-reply-btn" href="#">Reply</a> | <a class="" href=" {{ comment.get_absolute_url }} ">Thread</a> </cite></footer>
+                    </div>
+                    <div class="comment-reply" style="display: none;">
+                    {% for child_comment in comment.children %}
+                      <blockquote>
+                          <br/>
+                          <p>{{ child_comment.content }}</p>
+                          <footer>via {{ child_comment.user }} | <cite title="Source Title">{{ child_comment.timestamp|timesince }} ago </cite></footer>
+                      </blockquote>
+                    {% endfor %}
+                    {% if request.user.is_authenticated %}
+                    <form method="POST" action="."> {% csrf_token %}
+                        {{ comment_form | crispy }}
+                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="submit"> Reply </button>
+                        </span>
+                    </form>
+                    {% else %}
+                        <div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only">Error:</span> You must be <a href="{{ '/login' }}" class="alert-link"> logged in </a> to reply comment </div>
+                    {% endif %}
+                    </div>
+                  </div>
+                  <hr>
+                {% endfor %}
+              </div>
+              </div>
+              <div class="pagination">
+                  <span class="step-links pager">
+                      {% if comments.has_previous %}
+                          <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{request.GET.q}} {% endif %}"> <i class="fa fa-arrow-circle-o-left"></i> previous </a>
+                      {% endif %}
+
+                      <span class="current">
+                          Page {{ comments.number }} of {{ comments.paginator.num_pages }}.
+                      </span>
+
+                      {% if comments.has_next %}
+                          <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}"> next <i class="fa fa-arrow-circle-o-right"></i></a>
+                      {% endif %}
+                  </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+        </div>
+        </section>
+{% endblock content %}

@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %} blog | {% endblock %}
+	{% block content %}
+
+            <section id="blog">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">The official blog of Primenerds</h2>
+                        <p class="text-center wow fadeInDown text-info"><strong>Stay up to date with feature releases, events, and much more from primenerds.</strong></p>
+												<div class="well well-sm bg-info">
+													<p></p>
+													<p class="text-center">
+														<a href='#'><i class="fa fa-2x fa-rss" aria-hidden="true"></i>  Subscribe.</a>
+														<a href='#' class="col-sm-offset-1"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i>  facebook.com/primenerds</a>
+														<a href='#' class="col-sm-offset-1"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i>  twitter.com/primenerds</a>
+													</p>
+												</div>
+                        <br/>
+                        <p>
+                        	<form method="GET" action="">
+  													<div class="col-xs-3">
+    													<div class="input-group">
+      													<input type="text"  name="q" class="form-control" placeholder="search articles and contents" value="{{ request.GET.q }}">
+      													<span class="input-group-btn">
+        													<button class="btn btn-info" type="submit"> <i class="fa fa-search"></i> </button>
+      													</span>
+    													</div><!-- /input-group -->
+  													</div><!-- /.col-lg-6 -->
+                        	</form>
+                        </p>
+												{% if request.user.is_authenticated %}
+													<p class="text-right text-info"> <a href='#'> <strong> <i class="fa fa-user"></i> {{ request.user.username }} </strong> </a> </p>
+												{% else %}
+													<p class="text-right text-danger"> <a href='{% url "login" %}'> <strong> <i class='fa fa-sign-in'></i> Login You are an anonymouse user  </strong> </a> </p>
+												{% endif %}
+                    </div>
+                    <br>
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <!-- {{ object_list }} #this list objects horizontally -->
+                                {% for obj in object_list %}
+                            <div class="blog-post blog-large wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="0ms">
+                                <article>
+                                    <header class="entry-header">
+                                        <div class="entry-thumbnail">
+                                            {% if obj.image %}
+                                            <img class="img-responsive" src="{{ obj.image.url }}" alt="" />
+                                            {% endif %}
+                                            <span class="post-format post-format-video"><i class="fa fa-file"></i></span>
+                                        </div>
+                                        {% if obj.draft %}<h4>Staff Only: </h4> <button type="button" class="btn btn-danger">Draft</button> {% endif %}
+                                        <p>{% if obj.publish > today %} <h4> Future posts: </h4> <button type="button" class="btn btn-info">this post will be published in future </button>{% endif %}</p>
+                                        <div class="entry-date"> <small> <em> published since - </em> </small>{{ obj.timestamp}}</div>
+                                        <h2 class="entry-title"> <a href='{{ obj.get_absolute_url }}'> {{ obj.title }} </a><br/></h2>
+                                    </header>
+
+                                    <div class="entry-content post-detail-item">
+                                        <P class="">{{ obj.get_markdown | truncatechars_html:200 }}</P>
+                                        <a href=' {{ obj.get_absolute_url }} ' class="btn btn-primary">Read More</a>
+                                    </div>
+
+                                    <footer class="entry-meta">
+                                        <span class="entry-category"><i class="fa fa-folder-o"></i> <a href="#">Tutorial</a></span>
+                                        <span class="entry-author"><i class="fa fa-pencil"></i> {% if obj.user.get_full_name %} <a href="#">{{ obj.user.get_full_name }}</a> {% endif %}</span>
+                                        <!--<span class="entry-comments"><i class="fa fa-comments-o"></i> <a href="#">15</a></span>
+                                        <span class="entry-views"><i class="fa fa-eye"></i> <a href="#">47</a></span>-->
+                                    </footer>
+                                </article>
+                            </div>
+                            {% endfor %}
+                            <div class="pagination">
+                                <span class="step-links pager">
+                                    {% if object_list.has_previous %}
+                                        <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{request.GET.q}} {% endif %}"> <i class="fa fa-arrow-circle-o-left"></i> previous </a>
+                                    {% endif %}
+
+                                <span class="current">
+                                    Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                                </span>
+
+                                {% if object_list.has_next %}
+                                    <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}"> next <i class="fa fa-arrow-circle-o-right"></i></a>
+                                {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 col-sm-offset-1">
+													<div class="panel panel-info">
+													  <div class="panel-heading">
+													    <h3 class="panel-title"><strong>Side bar</strong></h3>
+													  </div>
+													  <div class="panel-body">
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item active">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item active">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item active">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+
+
+													  </div>
+													</div>
+													<hr>
+													<div class="panel panel-info">
+													  <div class="panel-heading">
+													    <h3 class="panel-title"><strong>Side bar</strong></h3>
+													  </div>
+													  <div class="panel-body">
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item-warning">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item-warning">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+															<div class="list-group">
+															  <a href="#" class="list-group-item-warning">
+															    <h4 class="list-group-item-heading"> a new content here</h4>
+															    <p class="list-group-item-text">
+																		whatever content whatever content whatever content
+																		whatever content whatever content whatever content
+																		whatever content whatever content
+																	</p>
+															  </a>
+															</div>
+
+													  </div>
+													</div>
+													<hr>
+													<div class="panel panel-info">
+													  <div class="panel-heading">
+													    <h3 class="panel-title"><strong>Side bar</strong></h3>
+													  </div>
+													  <div class="panel-body">
+													    Panel content
+													  </div>
+													</div>
+													<hr>
+
+													<div class="list-group">
+													  <a href="#" class="list-group-item active">
+													    Cras justo odio
+													  </a>
+													  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+													  <a href="#" class="list-group-item">Morbi leo risus</a>
+													  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+													  <a href="#" class="list-group-item">Vestibulum at eros</a>
+													</div>
+
+                    		</div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+	{% endblock content %}
