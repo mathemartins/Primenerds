@@ -157,6 +157,9 @@ class Category(models.Model):
     def get_image_url(self):
         return "%s%s" %(settings.MEDIA_URL, self.image)
 
+    def get_description(self):
+        return self.description
+
 def category_post_save_reciever(sender, instance, created, *args, **kwargs):
     print "signal sent"
     if created:

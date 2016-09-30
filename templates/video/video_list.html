@@ -29,11 +29,13 @@
       <table class="table">
         {% for item in queryset %}
 
-          <tr><td> {{ forloop.counter }} </td><td>-
+          <tr><td> {{ forloop.counter }} </td><td>
           {% if request.user.is_authenticated or item.has_preview %}
-           <a href="{{ item.get_absolute_url }}"> {{ item }} </a> <br/>
+           <a href="{{ item.get_absolute_url }}"> <strong>{{ item }}</strong> </a> <br/>
+           <td> <i class="fa fa-unlock fa-2x"></i> </td>
           {% else %}
-          {{ item }}
+          <p class="text-danger"> <strong>{{ item }}</strong> </p>
+          <td> <i class="fa fa-lock fa-2x"></i> </td>
           {% endif %}
         </td></tr>
 
