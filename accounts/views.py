@@ -41,7 +41,7 @@ def auth_login(request):
 	}
 	return render(request, "form.html", context)
 
-	
+
 def register_view(request):
 	print (request.user.is_authenticated())
 	if request.user.is_authenticated():

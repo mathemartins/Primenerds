@@ -57,7 +57,7 @@ class Video(models.Model):
 
     class Meta:
         unique_together = ('slug', 'category')
-        ordering = ['order', '-timestamp']
+        ordering = ['order', 'timestamp']
 
     def __unicode__(self):
         return self.title
@@ -85,6 +85,12 @@ class Video(models.Model):
         if video is not None:
             return video.get_absolute_url()
         return None
+
+    @property
+    def has_preview(self):
+        if self.free_preview:
+            return True
+        return False
 
 def video_post_save_reciever(sender, instance, created, *args, **kwargs):
     print "signal sent"
@@ -124,7 +130,7 @@ class CategoryManager(models.Manager):
 
     def all(self):
         return self.get_queryset().active()
-        
+
 class Category(models.Model):
     """docstring for Category"""
     title = models.CharField(max_length=200)

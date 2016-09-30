@@ -11,13 +11,15 @@
                     </button>
                     <a class="navbar-brand" href="{{ '/' }}"><img src="{% static 'images/logo.jpg' %}" alt="primenerd_logo"></a>
             </div>
-            
+
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="scroll active"><a href="{{ '/' }}">Home</a></li>
-                    <li class="scroll"><a href="{{'/blog'}}">Blog</a></li>
-                    <li class="scroll"><a href="#" target="blank">Community</a></li>
-                    <li class="scroll"><a href="{% url 'projects' %}" target="blank">Videos</a></li>
+                    {% url 'projects' as projects %}
+                    
+                    <li class="scroll active"><a href="{{ '/' }}"> <i class="fa fa-home"></i> Home</a></li>
+                    <li {% if request.path == projects %}class="scroll active"{% endif %}><a href="{% url 'projects' %}" target="blank"> <i class="fa fa-graduation-cap"></i> Tutorials</a></li>
+                    <li class="scroll"><a href="#" target="blank"> <i class="fa fa-users"></i> Community</a></li>
+                    <li {% if request.get_instance_location == '/blog' %}class="scroll active"{%endif%}><a href="{{'/blog'}}"> <i class="fa fa-file"></i> Blog</a></li>
                     {% if user.is_authenticated %}
                         <li class="scroll dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i> {{ user.username }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">

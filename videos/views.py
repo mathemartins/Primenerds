@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save
@@ -20,19 +21,13 @@ def staff_home(request):
 
 @login_required
 def video_detail(request, cat_slug, vid_slug):
-    obj = Video.objects.get(slug=vid_slug)
-    questions = obj.question_set.all()
-    #content_type = ContentType.objects.get_for_model(obj)
-    #tags = TaggedItem.objects.filter(content_type=content_type, object_id=obj.id)
-    for q in questions:
-        q.get_children()
-    try:
-        cat = Category.objects.get(slug=cat_slug)
-    except Exception as e:
-        raise Http404
-    try:
-        obj = Video.objects.get(slug=vid_slug)
+    cat = get_object_or_404(Category, slug=cat_slug)
+    obj = get_object_or_404(Video, slug=vid_slug, category=cat)
+    if request.user.is_authenticated() or obj.has_preview:
         questions = obj.question_set.all()
+        for q in questions:
+            q.get_children()
+
         question_form = QuestionForm()
 
         context = {
@@ -41,8 +36,9 @@ def video_detail(request, cat_slug, vid_slug):
             "question_form":question_form,
         }
         return render (request, "video/video_detail.html", context)
-    except Exception as e:
-        raise Http404
+    else:
+        next_url = obj.get_absolute_url()
+        return HttpResponseRedirect("%s?next=%s" %(reverse('login'), next_url))
 
 
 #@login_required
@@ -52,7 +48,7 @@ def category_list(request):
         "queryset":queryset,
     }
     return render (request, "video/category_list.html", context)
-    
+
 #@login_required
 def category_detail(request, cat_slug):
     #destination = request.get_full_path()
