@@ -2,7 +2,7 @@ try:
     from urllib import quote_plus
 except:
     pass
-    
+
 from django.contrib.auth import (
 		authenticate,
 		get_user_model,
@@ -23,6 +23,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.contenttypes.models import ContentType
 
 from django.db.models import Q
+from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -35,6 +36,10 @@ from comments.models import Comment
 from posts.forms import PostForm
 from posts.models import Post
 #from posts.utils import get_read_time
+from analytics.models import PageView
+from analytics.signals import page_view
+from questions.models import Question
+from videos.models import Video, Category
 
 def post_create(request):
     if not request.user.is_staff: #or not request.user.is_admin:
@@ -158,6 +163,9 @@ def post_list(request): #list items #this one is for homepage
 
     return render (request, "post_list.html", context)
     #return HttpResponse("<h2> List </h2>")
+
+
+
 
 def post_update(request, slug=None): #update data
     if not request.user.is_staff: #or not request.user.is_admin:

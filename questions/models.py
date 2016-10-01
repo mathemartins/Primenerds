@@ -14,6 +14,13 @@ class QuestionManager(models.Manager):
     """docstring for QuestionManager"""
     def all(self):
         return super(QuestionManager, self).filter(active=True).filter(parent=None)
+        
+    def recent(self):
+        try:
+        	limit_to = settings.RECENT_COMMENT_NUMBER
+        except:
+        	limit_to = 6
+        return self.get_queryset().filter(active=True).filter(parent=None)[:limit_to]
 
     def create_question(self, user=None, text=None, destination=None, video=None, parent=None):
         if not destination:

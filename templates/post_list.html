@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% block head_title %}  {% endblock %}
             {% block content %}
-            {% if not user.is_authenticated %}
             <!--<section id="main-slider">
                 <div class="owl-carousel">
                     <div class="item">
@@ -40,13 +39,16 @@
                     </div>
                 </div>
             </section>-->
-            
+
             <section id="cta" class="wow fadeIn">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-9">
-                            <h2 style="color: white;">Welcome to <strong>Primenerds LTD</strong> </h2>
-                            <p style="color: #8A2BE2;">Primenerds LTD is a combination of an online multi-national IT tutorial company and physical tech solutions consultancy company for the non-technical users. Primenerds LTD has been following the industry's standard for IT tutorials solution and is ready to follow the solutions technique from rookies to intermediate users and expert professionals from the industries with vast experience knowledge. It has survived not only by one personnel but team of professional developers helping the growth of the company and industry at large, but also the leap into electronic and rapid development of technology, remaining essentially unchanged and not reducing but increasing massively to the industries greatest peak and apex…., Primenerds LTD is fighting to best in the industry.
+                            <h2 style="font-family: 'Imprima', sans-serif; color: white;">Welcome to <strong>Primenerds LTD</strong> </h2>
+                            <p style="color: #8A2BE2; font-family: 'Imprima', sans-serif;">
+                              <strong>
+                                Primenerds LTD is a combination of an online multi-national IT tutorial company and physical tech solutions consultancy company for the non-technical users. Primenerds LTD has been following the industry's standard for IT tutorials solution and is ready to follow the solutions technique from rookies to intermediate users and expert professionals from the industries with vast experience knowledge. It has survived not only by one personnel but team of professional developers helping the growth of the company and industry at large, but also the leap into electronic and rapid development of technology, remaining essentially unchanged and not reducing but increasing massively to the industries greatest peak and apex…., Primenerds LTD is fighting to best in the industry.
+                              </strong>
                             </p>
                         </div>
 
@@ -77,7 +79,7 @@
                     <div class="section-header">
                         {% if user.is_authenticated %}
                           <ol class="breadcrumb">
-                            <li class="active"><small> Hi </small> <strong> {{ user.username }} </strong> </li>
+                            <li class="active"><small> Hi </small> <strong style="font-family: 'Imprima', sans-serif"> {{ user.username }} </strong> </li>
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Community</a></li>
@@ -136,8 +138,8 @@
                           </div>
                         </div>
 
-                        <h2 class="section-title text-center wow fadeInDown">Awesome Features</h2>
-                        <p class="text-center wow fadeInDown">Primenerds has provided awesome standard industry features on all of our platform to help and please our users engaging them with the following features for standard user experience</p>
+                        <h2 class="section-title text-center wow fadeInDown" style="font-family: 'Cookie', cursive;">Awesome Features</h2>
+                        <p class="text-center wow fadeInDown" style="font-family: 'Imprima', sans-serif">Primenerds has provided awesome standard industry features on all of our platform to help and please our users engaging them with the following features for standard user experience</p>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 wow fadeInLeft">
@@ -149,8 +151,8 @@
                                     <i class="fa fa-line-chart"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">Large expanded user community</h4>
-                                    <p>Primenerds and its consolidated has a massive user community to contain large and massive audience, our community was designed to carry user profile, user audience,  article pages, live communication with the instructors , instructors pages, instructors profile and etc..</p>
+                                    <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Large expanded user community</h4>
+                                    <p font-family: 'Imprima', sans-serif;>Primenerds and its consolidated has a massive user community to contain large and massive audience, our community was designed to carry user profile, user audience,  article pages, live communication with the instructors , instructors pages, instructors profile and etc..</p>
                                 </div>
                             </div>
 
@@ -159,8 +161,8 @@
                                     <i class="fa fa-cubes"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">Comment article on primenerds and primenerds hub-video membership portal</h4>
-                                    <p>Commenting system on both the primenerds home on all tutorial articles and our flexible Hub-membership portal, commenting system for all sections having the team nerds and instructors looking over your shoulders helping you out in every possible way they can.</p>
+                                    <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Comment article on primenerds and primenerds hub-video membership portal</h4>
+                                    <p font-family: 'Imprima', sans-serif;>Commenting system on both the primenerds home on all tutorial articles and our flexible Hub-membership portal, commenting system for all sections having the team nerds and instructors looking over your shoulders helping you out in every possible way they can.</p>
                                 </div>
                             </div>
 
@@ -169,8 +171,8 @@
                                     <i class="fa fa-pie-chart"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">Primenerds video-membership hub</h4>
-                                    <p>Primenerds video-hub membership portal for access to unlimited video tutorials and programme files, including downloads and more commenting system and following of comment thread.</p>
+                                    <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Primenerds video-membership hub</h4>
+                                    <p font-family: 'Imprima', sans-serif;>Primenerds video-hub membership portal for access to unlimited video tutorials and programme files, including downloads and more commenting system and following of comment thread.</p>
                                 </div>
                             </div>
                         </div>
@@ -181,10 +183,10 @@
             <section id="cta2">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Primenerds.LTD</h2>
+                        <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms" style="font-family: 'Imprima', sans-serif">Primenerds.LTD</h2>
                         <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms" style="color: #8A2BE2;">Primenerds LTD has been following the industry's standard for IT tutorials solution and is ready to follow the solutions technique from rookies to intermediate users and expert professionals from the industries with vast experience knowledge.</p>
                         {% if not user.is_authenticated %}
-                            <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms"><a class="btn btn-danger" href="#"> Enroll and become a premium user</a></p>
+                            <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms"><a class="btn btn-danger" href="#" font-family: 'Imprima', sans-serif;> Enroll and become a premium user</a></p>
                         {% endif %}
                         <!--<img class="img-responsive wow fadeIn" src="{% static 'images/cta2/cta2-img.png' %}" alt="" data-wow-duration="300ms" data-wow-delay="300ms">-->
                     </div>
@@ -195,7 +197,7 @@
                 <div class="container">
 
                     <div class="section-header">
-                        <h2 class="section-title text-center wow fadeInDown">Our Services</h2>
+                        <h2 class="section-title text-center wow fadeInDown" style="font-family: 'Cookie', cursive">Our Services</h2>
                         <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
                         <p class="text-center wow fadeInDown"> <a class="btn btn-primary" href="{% url 'service' %}">Learn More</a></p>
                     </div>
@@ -208,7 +210,7 @@
                                         <i class="fa fa-cogs"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Engineering</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Engineering</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -220,7 +222,7 @@
                                         <i class="fa fa-code"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Programming</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Programming</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -232,7 +234,7 @@
                                         <i class="fa fa-user"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Cybersecurity</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Cybersecurity</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -244,7 +246,7 @@
                                         <i class="fa fa-apple"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">iOS App</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">iOS App</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -256,7 +258,7 @@
                                         <i class="fa fa-android"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Android App</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Android App</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -268,7 +270,7 @@
                                         <i class="fa fa-wifi"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Networking</h4>
+                                        <h4 class="media-heading" style="font-family: 'Imprima', sans-serif">Networking</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
@@ -502,7 +504,7 @@
             <section id="meet-team">
                 <div class="container">
                     <div class="section-header">
-                        <h2 class="section-title text-center wow fadeInDown">Meet Primenerds</h2>
+                        <h2 class="section-title text-center wow fadeInDown" style="font-family: 'Cookie', cursive">Meet Primenerds</h2>
                         <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
                     </div>
 
@@ -510,7 +512,7 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <h3 class="column-title">Our Skills</h3>
+                            <h3 class="column-title" style="font-family: 'Imprima', sans-serif">Our Skills</h3>
                             <strong>CYBERSECUIRITY - 85% Successful</strong>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
@@ -538,7 +540,7 @@
                         </div>
 
                         <div class="col-sm-4">
-                            <h3 class="column-title">Our History</h3>
+                            <h3 class="column-title" style="font-family: 'Imprima', sans-serif">Our History</h3>
                             <div role="tabpanel">
                                 <ul class="nav main-tab nav-justified" role="tablist">
                                     <li role="presentation" class="active">
@@ -576,7 +578,7 @@
                         </div>
 
                         <div class="col-sm-4">
-                            <h3 class="column-title">Faqs</h3>
+                            <h3 class="column-title" style="font-family: 'Imprima', sans-serif">Faqs</h3>
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingOne">
@@ -666,7 +668,7 @@
                 <section id="pricing">
                     <div class="container">
                         <div class="section-header">
-                            <h2 class="section-title text-center wow fadeInDown">Become a Premium User</h2>
+                            <h2 class="section-title text-center wow fadeInDown" style="font-family: 'Cookie', cursive">Become a Premium User</h2>
                             {% if not user.is_authenticated %}
                                 <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
                                 <p class="text-center"> <a href="{% url 'register' %}" class="btn btn-danger"> Sign Up Now</a> </p>
@@ -778,7 +780,7 @@
             <section id="blog">
                 <div class="container">
                     <div class="section-header">
-                        <h2 class="section-title text-center wow fadeInDown">Tutorials</h2>
+                        <h2 class="section-title text-center wow fadeInDown" style="font-family: 'Cookie', cursive">Tutorials</h2>
                         <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
                     </div>
                     <div class="row">
@@ -930,20 +932,4 @@
                     </div>
                 </div>
             </section><!/#bottom-->
-            {% else %}
-            <section>
-              <div class="container">
-
-                <!-- jumbotron starts here -->
-                <div class="jumbotron">
-                  <div class="container">
-                    <h2>Hi, {{ user.username }}</h2>
-                    <marquee><p class="lead text-info"> welcome to primenerds </p></marquee>
-                  </div>
-                </div>
-                <!-- jumbotron ends here -->
-
-              </div>
-            </section>
-            {% endif %}
             {% endblock content %}

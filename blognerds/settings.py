@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'questions',
     'accounts',
     'notifications',
+    'analytics',
 
     #third-party apps from github
     'django_filters',

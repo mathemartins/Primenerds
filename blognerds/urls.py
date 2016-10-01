@@ -63,6 +63,9 @@ urlpatterns = [
     url(r'^login/', 'accounts.views.auth_login', name='login'),
     url(r'^logout/', 'accounts.views.auth_logout', name='logout'),
 
+    # url for general homepage
+    url(r'^home/', 'accounts.views.logged_in_homepage', name='logged_in'),
+
 
     # url patterns for site registration system
     url(r'^register/', 'accounts.views.register_view', name='register'),
@@ -76,6 +79,8 @@ urlpatterns = [
     #url patterns for video content stuffs
     url(r'^question/(?P<id>\d+)/$', 'questions.views.question_thread', name='question_thread'),
     url(r'^question/create/$', 'questions.views.question_create_view', name='question_create'),
+
+
 
 ]
 

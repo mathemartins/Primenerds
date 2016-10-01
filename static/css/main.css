@@ -295,7 +295,8 @@ ul.nostyle i {
 }
 #cta {
   padding: 50px 0;
-  background-color: #242a33;
+  background-color: #001521;
+  background-image: url("https://www.transparenttextures.com/patterns/skulls.png");
 }
 #cta h2 {
   margin-top: 0;
